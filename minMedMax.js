@@ -1,25 +1,31 @@
 const { template } = require('@babel/core')
 
 function minMedMax(n1, n2, n3) {
-  let array = [n1,n2,n3];
-  let swap,done = false,
-      swapped;
-  while (!done){
-    swapped=0;
-    for(i=1;i<array.length;i++){
-      if(array[i-1] > array[i]){
-        swap = array[i];
-        array[i] = array[i-1];
-        array[i-1] = swap
-        swapped = 1;
-      }
-      if(swapped == 0){
-        done = true
-      }
+
+  let number =[n1,n2,n3];
+
+  if(n1<n3 && n1<n2 || n1 == n2){
+    if(n2<n3){
+      number=[n1,n2,n3];
+    }else{
+      number=[n1,n3,n2];
+    }
+  }else if(n2<n1 && n2<n3){
+    if(n1<n3){
+      number=[n2,n1,n3];
+    }else{
+      number=[n2,n3,n1];
+    }
+  }else{
+    if(n2<n1){
+      number=[n3,n2,n1];
+    }else{
+      number=[n3,n1,n2]
     }
   }
-  return {min: array[0], mid: array[1] ,max: array[2]};
-
+  return {
+    min: number[0], mid: number[1], max: number[2]
+  };
 }
 module.exports = minMedMax
 
